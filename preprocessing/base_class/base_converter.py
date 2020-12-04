@@ -10,7 +10,7 @@ Create Date: 2020/12/3
 
 
 class BaseDataTypeConverter(object):
-    def __init__(self, raw_path, process_path, dev_output_path, organized_path):
+    def __init__(self):
         """
         将数据格式之间来回转换，注意这里只涉及到数据转换，而不涉及到任何数据预处理
         :param raw_path: 格式等于raw_data下的数据
@@ -23,76 +23,72 @@ class BaseDataTypeConverter(object):
         raw2dev_out raw2organized process2dev_out process2organized 复制原始标签作为预测标签
         dev_out2raw organized2raw dev_out2process organized2process 仅保留原始标签，移除预测标签
         """
-        self.raw_path = raw_path
-        self.process_path = process_path
-        self.dev_output_path = dev_output_path
-        self.organized_path = organized_path
         self.mid_data = None
 
-    def raw2mid_data(self):
+    def raw2mid_data(self, raw_path):
         raise NotImplementedError()
 
-    def process2mid_data(self):
+    def process2mid_data(self, process_path):
         raise NotImplementedError()
 
-    def dev_out2mid_data(self):
+    def dev_out2mid_data(self, dev_output_path):
         raise NotImplementedError()
 
-    def organized2mid_data(self):
+    def organized2mid_data(self, organized_path):
         raise NotImplementedError()
 
-    def mid_data2raw(self):
+    def mid_data2raw(self, raw_path):
         raise NotImplementedError()
 
-    def mid_data2process(self):
+    def mid_data2process(self, process_path):
         raise NotImplementedError()
 
-    def mid_data2dev_out(self):
+    def mid_data2dev_out(self, dev_output_path):
         raise NotImplementedError()
 
-    def mid_data2organized(self):
+    def mid_data2organized(self, organized_path):
         raise NotImplementedError()
 
-    def raw2process(self):
-        self.raw2mid_data()
-        self.mid_data2process()
+    def raw2process(self, raw_path, process_path):
+        self.raw2mid_data(raw_path)
+        self.mid_data2process(process_path)
 
-    def process2raw(self):
-        self.process2mid_data()
-        self.mid_data2raw()
+    def process2raw(self, process_path, raw_path):
+        self.process2mid_data(process_path)
+        self.mid_data2raw(raw_path)
 
-    def raw2dev_out(self):
-        self.raw2mid_data()
-        self.mid_data2dev_out()
+    def raw2dev_out(self, raw_path, dev_output_path):
+        self.raw2mid_data(raw_path)
+        self.mid_data2dev_out(dev_output_path)
 
-    def raw2organized(self):
-        self.raw2mid_data()
-        self.mid_data2organized()
+    def raw2organized(self, raw_path, organized_path):
+        self.raw2mid_data(raw_path)
+        self.mid_data2organized(organized_path)
 
-    def process2dev_out(self):
-        self.process2mid_data()
-        self.mid_data2dev_out()
+    def process2dev_out(self, process_path, dev_output_path):
+        self.process2mid_data(process_path)
+        self.mid_data2dev_out(dev_output_path)
 
-    def process2organized(self):
-        self.process2mid_data()
-        self.mid_data2organized()
+    def process2organized(self, process_path, organized_path):
+        self.process2mid_data(process_path)
+        self.mid_data2organized(organized_path)
 
-    def dev_out2raw(self):
-        self.dev_out2mid_data()
-        self.mid_data2raw()
+    def dev_out2raw(self, dev_output_path, raw_path):
+        self.dev_out2mid_data(dev_output_path)
+        self.mid_data2raw(raw_path)
 
-    def organized2raw(self):
-        self.organized2mid_data()
-        self.mid_data2raw()
+    def organized2raw(self, organized_path, raw_path):
+        self.organized2mid_data(organized_path)
+        self.mid_data2raw(raw_path)
 
-    def dev_out2process(self):
-        self.dev_out2mid_data()
-        self.mid_data2process()
+    def dev_out2process(self, dev_output_path, process_path):
+        self.dev_out2mid_data(dev_output_path)
+        self.mid_data2process(process_path)
 
-    def organized2process(self):
-        self.organized2mid_data()
-        self.mid_data2process()
+    def organized2process(self, organized_path, process_path):
+        self.organized2mid_data(organized_path)
+        self.mid_data2process(process_path)
 
-    def organized2dev_out(self):
-        self.organized2mid_data()
-        self.mid_data2dev_out()
+    def organized2dev_out(self, organized_path, dev_output_path):
+        self.organized2mid_data(organized_path)
+        self.mid_data2dev_out(dev_output_path)
